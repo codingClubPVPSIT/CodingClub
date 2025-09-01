@@ -1,220 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bug Hunt Code Club</title>
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="assets\logo.png" type="image/x-icon">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://unpkg.com/scrollreveal"></script>
+  <style>
+    .tagline {
+      text-shadow:
+        0 0 5px #0ff, /* smaller glow */
+        0 0 10px #0ff, /* medium glow */
+        0 0 20px #0ff, /* larger glow */
+        0 0 40px #0ff; /* outermost, fainter glow */
+    }
+  </style>
+  <script>
+    // Custom color for Tailwind
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'custom-cyan': '#00ffe7',
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="bg-gray-900 text-white font-sans">
 
+  <img src="assets/head.jpg" alt="Institution Banner" class="w-full h-auto">
   <!-- Fixed Header (Banner + Navbar) -->
-  <div class="fixed-header">
+  <header class=" sticky top-0 left-0 right-0 z-50 bg-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-3">
+            <!-- This is a placeholder for a logo, which is good practice -->
+            <a href="#home" class="text-xl font-bold text-white tagline">
+                Coding Club
+            </a>
 
-  <!-- Header -->
-  <header class="main-header">
-    <div class="left-block">
-      <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEThhJqvz22OA/company-logo_200_200/company-logo_200_200/0/1656652477995?e=2147483647&v=beta&t=J36IZ4l3EgD4QSKP-ojc1s0fss1gVCeb8RBixN96az0" alt="Institute Logo" class="logo-left">
-      <div class="title-center">
-        <h1>PVPSIT</h1>
-        <div class="divider"></div>
-        <p>PRASAD V. POTLURI SIDDHARTHA <br> INSTITUTE OF TECHNOLOGY</p>
-      </div>
-      <img src="https://www.adcbp.in/images/naac-a+-logo.png" alt="NAAC Badge" class="logo-right">
-    </div>
+            <!-- Desktop Navigation -->
+            <ul class="navbar hidden md:flex space-x-8">
+                <li><a href="#home" class="hover:text-custom-cyan transition-colors duration-300">Home</a></li>
+                <li><a href="#activities" class="hover:text-custom-cyan transition-colors duration-300">Club Activities</a></li>
+                <li><a href="#members" class="hover:text-custom-cyan transition-colors duration-300">Members</a></li>
+                <li><a href="#events" class="hover:text-custom-cyan transition-colors duration-300">Events</a></li>
+                <li><a href="#contact" class="hover:text-custom-cyan transition-colors duration-300">Contact</a></li>
+            </ul>
 
-    <div class="right-block">
-  <div class="dept-text">
-    <p class="dept-top">DEPARTMENT OF</p>
-    <p class="dept-middle">COMPUTER SCIENCE AND ENGINEERING</p>
-    <p class="dept-bottom">(ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING) AND (DATA SCIENCE)</p>
-  </div>
+            <!-- Mobile Menu Icon -->
+            <button id="menu-icon" class="md:hidden text-3xl">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
 
-  <!-- Club Logo aligned to right -->
-  <img src="assets/logo.png" alt="Club Logo" class="club-logo-banner">
-</div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="flex flex-col items-center py-4">
+                <li><a href="#home" class="block py-2 hover:text-custom-cyan">Home</a></li>
+                <li><a href="#activities" class="block py-2 hover:text-custom-cyan">Club Activities</a></li>
+                <li><a href="#members" class="block py-2 hover:text-custom-cyan">Members</a></li>
+                <li><a href="#events" class="block py-2 hover:text-custom-cyan">Events</a></li>
+                <li><a href="#contact" class="block py-2 hover:text-custom-cyan">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-  </header>
-
-  <!-- Navigation -->
-  <nav class="nav-bar">
-    <i class='bx bx-menu' id="menu-icon"></i>
-    <ul class="navbar">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#activities">Club Activities</a></li>
-      <li><a href="#members">Members</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-</div>
 
   <!-- Home -->
-  <section class="home" id="home">
-    <div class="text">
-      <h1>Welcome to <span>Bug Hunt Code Club</span></h1>
-      <h2 class="tagline">Organised by CSE(AI&amp;ML) &amp; CSE(DS) | Powered by PVPSIT</h2>
-      <p>Learn, Build, and Grow with us in the world of technology.</p>
-    </div>
+  <section class="home relative min-h-[75vh] md:h-[400px] flex items-center justify-center text-center pt-24" id="home">
+    <div class="absolute inset-0">
+        <img class="w-full h-full object-cover opacity-20" src="./assets/coding-platform.jpg" alt="Futuristic AI neural network visualization">
+      </div>
+      <div class="text px-4">
+        <h1 class="text-4xl sm:text-6xl font-bold">Welcome to <span class="text-custom-cyan">Coding Club</span></h1>
+        <h2 class="tagline text-lg sm:text-xl mt-4">Organised by CSE(AI&amp;ML) &amp; CSE(DS) | Powered by PVPSIT</h2>
+        <p class="mt-4 text-base sm:text-lg">Learn, Build, and Grow with us in the world of technology.</p>
+      </div>
   </section>
 
-  <!-- Activities -->
- <section class="activities" id="activities">
-  <div class="heading">
-    <h1>What We Do</h1>
-    <h1>Club Goals</h1> 
-  </div>
-  <div class="activities-container">
-    <div class="box">
-      <i class="ri-rocket-line"></i>
-      <h2>Mission</h2>
-      <p>To foster creative problem-solving, logical reasoning, and collaborative coding skills by creating immersive digital escape room experiences.</p>
+<!-- Activities / Club Goals Section -->
+<section class="activities min-h-screen bg-gray-800 py-20" id="activities">
+  <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Heading -->
+    <div class="heading mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-custom-cyan mb-2">Our Club Goals</h1>
+      <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
+        Empowering students through coding, creativity, and collaboration — all within immersive escape room experiences.
+      </p>
     </div>
-    <div class="box">
-      <i class="ri-lightbulb-line"></i>
-      <h2>Vision</h2>
-      <p>To build an innovative community where students explore programming, storytelling, and puzzle design in a gamified environment, enhancing both technical and critical thinking abilities.</p>
+
+    <!-- Mission and Vision Boxes -->
+    <div class="activities-container grid md:grid-cols-2 gap-10 mb-16">
+      
+      <!-- Mission -->
+      <div class="box bg-gray-900 p-8 rounded-lg text-center shadow-lg">
+        <i class="ri-rocket-line text-5xl text-custom-cyan mb-6 inline-block"></i>
+        <h2 class="text-2xl font-bold text-white mb-3">Our Mission</h2>
+        <p class="text-gray-300 leading-relaxed">
+          To foster creative problem-solving, logical reasoning, and collaborative coding skills by designing immersive and challenging digital escape room experiences.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="box bg-gray-900 p-8 rounded-lg text-center shadow-lg">
+        <i class="ri-lightbulb-line text-5xl text-custom-cyan mb-6 inline-block"></i>
+        <h2 class="text-2xl font-bold text-white mb-3">Our Vision</h2>
+        <p class="text-gray-300 leading-relaxed">
+          To cultivate an innovative community where students explore programming, storytelling, and puzzle design in a gamified setting—enhancing both technical skills and critical thinking.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Faculty Advisor's Message -->
+    <div class="bg-gray-900 rounded-2xl p-8 md:p-12 text-left">
+      <div class="flex flex-col md:flex-row items-center gap-8">
+        
+        <!-- Faculty Image -->
+        <div class="w-48 h-48 rounded-2xl overflow-hidden flex-shrink-0">
+          <img src="./images/FACULTY.jpg" alt="Faculty Advisor" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Faculty Text -->
+        <div class="flex-1">
+          <h3 class="text-3xl font-bold text-gray-50 mb-4">Faculty Advisor's Message</h3>
+          <p class="text-lg text-gray-100 mb-6 leading-relaxed">
+            "It is with great excitement that we launch the AI Club at PVPSIT. This initiative marks a significant step towards building a vibrant community for aspiring AI enthusiasts. I am confident that this club will become a hub of innovation, where students can explore, learn, and collaborate on the technologies that are shaping our future. I encourage all curious minds to join us in building this community from the ground up and to embark on this exciting journey together."
+          </p>
+          <div class="text-gray-100">
+            <p class="font-semibold text-gray-50">Mr. XXXXXXX</p>
+            <p>Assistant Professor, CSE (AI & ML) Department</p>
+            <p>Faculty Advisor, AI Club PVPSIT</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Club Intro - Redesigned -->
+<section class="club-intro-reimagined bg-gray-900 text-white relative">
+  <!-- Optional: Add a background image/video here -->
+  <!-- <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('your-background-image.jpg');"></div> -->
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  <div class="container mx-auto py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="md:flex md:items-center">
+      <div class="md:w-1/2">
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+          <span class="block">Pioneering the Future with</span>
+          <span class="block text-custom-cyan">AI, ML, and Data Science.</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-300 mb-8 max-w-xl">
+          Join the <strong class="text-white font-bold">Coding Club</strong>, where innovation thrives and future tech leaders are born. We are a dynamic community dedicated to exploring the limitless possibilities of artificial intelligence and data. Here, your ideas will transform into impactful projects.
+        </p>
+        <a href="#join-us" class="bg-custom-cyan text-white font-bold py-3 px-8 rounded-full hover:bg-cyan-600 transition duration-300 ease-in-out">Become an Innovator</a>
+      </div>
     </div>
   </div>
 </section>
 
-  <!-- Club Intro -->
-  <section class="club-intro">
-    <h1>ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING<br> & <br> DATA SCIENCE</h1>
-    <p>
-      Welcome to the <strong>Bug Hunt Code Club</strong>, a thriving center for creativity, exploration, and collaboration! 
-      We are delighted to welcome you to our community of aspiring innovators and change makers. 
-      We believe in providing a platform for the development of innovative mindsets and entrepreneurs. 
-      Your ideas will blossom here, as well as the skills needed to turn them into impactful projects and ventures.
-    </p>
-    <h2 style="margin-top:25px; color:#00ffe7;">What We Do:</h2>
-    <ul>
-      <li>- Idea Incubation</li>
-      <li>- Fun & Logical Thinking Challenges</li>
-      <li>- Problem-Solving & Technical Skills</li>
-      <li>- Collaboration & Team Spirit</li>
-    </ul>
-  </section>
+<!-- What We Do Section -->
+<section class="what-we-do bg-gray-900 py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-bold mb-12 text-gray-100">What We Do</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Feature Card 1: Idea Incubation -->
+      <div class="feature-card p-6 bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <div class="text-4xl text-custom-cyan mb-4"><i class="fas fa-lightbulb"></i></div>
+        <h3 class="text-xl font-bold mb-2 text-gray-200">Idea Incubation</h3>
+        <p class="text-gray-100">Transforming your innovative concepts into tangible projects with mentorship and resources.</p>
+      </div>
+      <!-- Feature Card 2: Logical Challenges -->
+      <div class="feature-card p-6 bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <div class="text-4xl text-custom-cyan mb-4"><i class="fas fa-brain"></i></div>
+        <h3 class="text-xl font-bold mb-2 text-gray-300">Logical Challenges</h3>
+        <p class="text-gray-200">Engage in fun and stimulating challenges that sharpen your logical and analytical thinking.</p>
+      </div>
+      <!-- Feature Card 3: Skill Development -->
+      <div class="feature-card p-6 bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <div class="text-4xl text-custom-cyan mb-4"><i class="fas fa-cogs"></i></div>
+        <h3 class="text-xl font-bold mb-2 text-gray-300">Skill Development</h3>
+        <p class="text-gray-200">Enhance your problem-solving abilities and technical skills in a collaborative environment.</p>
+      </div>
+      <!-- Feature Card 4: Team Collaboration -->
+      <div class="feature-card p-6 bg-gray-700 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+        <div class="text-4xl text-custom-cyan mb-4"><i class="fas fa-users"></i></div>
+        <h3 class="text-xl font-bold mb-2 text-gray-300">Team Collaboration</h3>
+        <p class="text-gray-200">Cultivate a strong team spirit and learn the power of collaboration in achieving shared goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Members -->
-  <section class="members" id="members">
-    <div class="heading">
-  
-      <h1>Meet the Team<br>Our Members</h1>
+<section class="members-section bg-gray-800 min-h-screen flex flex-col justify-center py-20" id="members">
+  <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <div class="heading mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-white">Meet the Team</h1>
+      <h2 class="text-3xl sm:text-4xl font-bold text-custom-cyan">Our Members</h2>
     </div>
-    <div class="activities-container">
-      <div class="box">
-        <img src="assets/member1.jpg" alt="President">
-        <h2>Shaik Hashmi Farheen</h2>
-        <p>Drives creative problem-solving and new initiatives for continuous growth.</small</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+      <!-- Member Card 1 -->
+      <div class="team-card bg-gray-900 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+        <img src="assets/member1.jpg" alt="President" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-custom-cyan object-cover">
+        <h3 class="text-2xl font-bold text-white">Shaik Hashmi Farheen</h3>
+        <p class="text-custom-cyan font-semibold mt-2">coordinator</p>
+        <p class="text-base mt-4 text-gray-400">Drives creative problem-solving and new initiatives for continuous growth.</p>
+        <div class="social-links flex justify-center space-x-4 text-gray-400 mt-6">
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-github fa-lg"></i></a>
+        </div>
       </div>
-      <div class="box">
-        <img src="assets/member2.jpg" alt="Vice President">
-        <h2>Koppolu Chamini</h2>
-        <p>Ensures smooth functioning of processes and efficient team coordination.</small</p>
+
+      <!-- Member Card 2 -->
+      <div class="team-card bg-gray-900 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+        <img src="assets/member2.jpg" alt="Vice President" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-custom-cyan object-cover">
+        <h3 class="text-2xl font-bold text-white">Koppolu Chamini</h3>
+        <p class="text-custom-cyan font-semibold mt-2">coordinator</p>
+        <p class="text-base mt-4 text-gray-400">Ensures smooth functioning of processes and efficient team coordination.</p>
+        <div class="social-links flex justify-center space-x-4 text-gray-400 mt-6">
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-github fa-lg"></i></a>
+        </div>
       </div>
-      <div class="box">
-        <img src="assets/member3.jpg" alt="Secretary">
-        <h2>Annam Elisha Raj</h2>
-        <p>Leads technical development, innovation, and digital transformation.</p>
+
+      <!-- Member Card 3 -->
+      <div class="team-card bg-gray-900 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+        <img src="assets/member3.jpg" alt="Secretary" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-custom-cyan object-cover">
+        <h3 class="text-2xl font-bold text-white">Annam Elisha Raj</h3>
+        <p class="text-custom-cyan font-semibold mt-2">coordinator</p>
+        <p class="text-base mt-4 text-gray-400">Leads technical development, innovation, and digital transformation.</p>
+        <div class="social-links flex justify-center space-x-4 text-gray-400 mt-6">
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-github fa-lg"></i></a>
+        </div>
       </div>
-      <div class="box">
-        <img src="assets/member4.jpg" alt="Treasurer">
-        <h2>Lankireddy Mokshagna Reddy</h2>
-        <p>Crafts engaging visuals and design strategies for impactful communication.</p>
+
+      <!-- Member Card 4 -->
+      <div class="team-card bg-gray-900 p-8 rounded-lg text-center transform hover:-translate-y-2 transition-transform duration-300 ease-in-out">
+        <img src="assets/member4.jpg" alt="Treasurer" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-custom-cyan object-cover">
+        <h3 class="text-2xl font-bold text-white">Lankireddy Mokshagna Reddy</h3>
+        <p class="text-custom-cyan font-semibold mt-2">coordinator</p>
+        <p class="text-base mt-4 text-gray-400">Crafts engaging visuals and design strategies for impactful communication.</p>
+        <div class="social-links flex justify-center space-x-4 text-gray-400 mt-6">
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+          <a href="#" class="hover:text-custom-cyan transition-colors"><i class="fab fa-github fa-lg"></i></a>
+        </div>
       </div>
+
     </div>
-  </section>
-  <!-- Events -->
-<section class="events" id="events">
-  <div class="heading">
-    <span>What's Happening</span>
-    <h1>Upcoming Events</h1>
   </div>
-  <div class="events-container">
+</section>
 
-    <!-- Event 1 -->
-    <div class="event-card">
-      <div class="event-date">--/--/----</div>
-      <h2>Coding Challenge</h2>
-      <p>Updated Soon</p>
-      <!--<a href="https://example.com/register-coding" target="_blank" class="event-btn">Register</a>-->
+  <!-- Events -->
+<section class="events py-20" id="events">
+  <div class="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+    <div class="heading mb-12">
+      <span class="text-custom-cyan text-lg">What's Happening</span>
+      <h1 class="text-3xl sm:text-4xl font-bold">Upcoming Events</h1>
     </div>
+    <div class="events-container grid md:grid-cols-2 gap-8">
 
-    <!-- Event 2 -->
-    <div class="event-card">
-      <div class="event-date">--/--/----</div>
-      <h2>Coding Challenge</h2>
-      <p>Updated Soon</p>
-      <!--<a href="https://example.com/register-ai" target="_blank" class="event-btn">Join Now</a>-->
+      <!-- Event 1 -->
+      <div class="event-card bg-gray-800 p-8 rounded-lg text-center">
+        <div class="event-date bg-custom-cyan text-gray-900 font-bold py-2 px-4 rounded-full inline-block mb-4">--/--/----</div>
+        <h2 class="text-2xl font-bold mb-2">Coding Challenge</h2>
+        <p>Updated Soon</p>
+      </div>
+
+      <!-- Event 2 -->
+      <div class="event-card bg-gray-800 p-8 rounded-lg text-center">
+        <div class="event-date bg-custom-cyan text-gray-900 font-bold py-2 px-4 rounded-full inline-block mb-4">--/--/----</div>
+        <h2 class="text-2xl font-bold mb-2">Coding Challenge</h2>
+        <p>Updated Soon</p>
+      </div>
+
     </div>
-
   </div>
 </section>
 
   <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form id="contactForm">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+<section id="contact" class="contact-section bg-gray-800 text-white min-h-screen flex flex-col justify-center py-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl sm:text-5xl font-bold">Contact Us</h2>
+      <p class="mt-4 text-xl text-gray-400">We'd love to hear from you. Send us a message!</p>
+    </div>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 bg-gray-900 p-12 rounded-lg shadow-lg">
+      
+      <!-- Contact Info -->
+      <div class="contact-info flex flex-col justify-center space-y-8">
+        <div class="flex items-center">
+          <i class="fas fa-map-marker-alt text-custom-cyan text-3xl"></i>
+          <p class="ml-5 text-lg text-gray-300">PVPSIT,Vijayawada</p>
+        </div>
+        <div class="flex items-center">
+          <i class="fas fa-envelope text-custom-cyan text-3xl"></i>
+          <p class="ml-5 text-lg text-gray-300">codingclubpvpsit2025@gmail.com</p>
+        </div>
 
-  <!-- Footer -->
-  <div class="copyright">
-    <p>&#169; <span>Bug Hunt Code Club</span> All rights reserved</p>
-    <div class="social">
-      <a href="#"><i class="ri-facebook-fill"></i></a>
-      <a href="#"><i class="ri-twitter-x-line"></i></a>
-      <a href="#"><i class="ri-instagram-line"></i></a>
+        <div class="social-links flex space-x-6 pt-6">
+          <a href="#" class="text-gray-400 hover:text-custom-cyan transition-colors"><i class="fab fa-linkedin fa-3x"></i></a>
+          <a href="#" class="text-gray-400 hover:text-custom-cyan transition-colors"><i class="fab fa-github fa-3x"></i></a>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <form id="contactForm" class="space-y-6">
+        <input type="text" id="name" placeholder="Your Name" required class="w-full bg-gray-800 p-4 rounded-lg border border-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-custom-cyan transition">
+        <input type="email" id="email" placeholder="Your Email" required class="w-full bg-gray-800 p-4 rounded-lg border border-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-custom-cyan transition">
+        <textarea id="message" rows="6" placeholder="Your Message" required class="w-full bg-gray-800 p-4 rounded-lg border border-gray-700 text-lg focus:outline-none focus:ring-2 focus:ring-custom-cyan transition"></textarea>
+        <button type="submit" class="w-full bg-custom-cyan text-gray-900 font-bold py-4 rounded-lg text-lg hover:bg-opacity-80 transition-colors">Send Message</button>
+      </form>
+
     </div>
   </div>
+</section>
 
+  <!-- Footer -->
+  <footer class="bg-gray-900 py-6">
+    <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center text-center gap-4 px-4 sm:px-6 lg:px-8">
+      <p class="text-gray-400 text-sm">&#169; <span class="text-custom-cyan">Bug Hunt Code Club</span> All rights reserved</p>
+      <div class="social flex space-x-4">
+        <a href="#" class="text-2xl text-gray-400 hover:text-custom-cyan transition-colors"><i class="ri-facebook-fill"></i></a>
+        <a href="#" class="text-2xl text-gray-400 hover:text-custom-cyan transition-colors"><i class="ri-twitter-x-line"></i></a>
+        <a href="#" class="text-2xl text-gray-400 hover:text-custom-cyan transition-colors"><i class="ri-instagram-line"></i></a>
+      </div>
+    </div>
+  </footer>
   <script src="main.js"></script>
   <script>
-  function smoothScroll(target, duration) {
-    const element = document.querySelector(target);
-    const start = window.pageYOffset;
-    const end = element.getBoundingClientRect().top + start;
-    const distance = end - start;
-    let startTime = null;
+    // Mobile Menu Toggle
+    const menuIcon = document.getElementById('menu-icon');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
 
-    function animation(currentTime) {
-      if (startTime === null) startTime = currentTime;
-      const timeElapsed = currentTime - startTime;
-      const run = ease(timeElapsed, start, distance, duration);
-      window.scrollTo(0, run);
-      if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    // Easing function
-    function ease(t, b, c, d) {
-      t /= d / 2;
-      if (t < 1) return (c / 2) * t * t + b;
-      t--;
-      return (-c / 2) * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-  }
-
-  // Apply on all nav links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = this.getAttribute('href');
-      smoothScroll(target, 2000); // 2000ms = 2s scroll duration
+    menuIcon.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
     });
-  });
-</script>
+
+    // Close mobile menu when a link is clicked
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+
+
+    // Smooth Scroll (from original file, preserved)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        // Adjust for fixed header height
+        const headerOffset = document.querySelector('header').offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
