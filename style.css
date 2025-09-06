@@ -40,7 +40,7 @@ body {
 }
 
 .text-custom-cyan {
-  display: inline !important;
+  display: inline;
   white-space: nowrap;
 }
 
