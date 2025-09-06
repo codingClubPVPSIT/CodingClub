@@ -39,6 +39,12 @@ body {
   text-align: center;
 }
 
+.text-custom-cyan {
+  display: inline !important;
+  white-space: nowrap;
+}
+
+
 /* Left logo block */
 .left-block {
   flex: 1;
