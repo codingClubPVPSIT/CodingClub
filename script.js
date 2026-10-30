@@ -718,6 +718,32 @@
     }
   });
 
+  /* Winner photos: fade in when loaded */
+  $$(".winner-pic img, .winner-pic-small img").forEach((image) => {
+    const pic = image.closest(".winner-pic, .winner-pic-small");
+    if (!pic) return;
+
+    const markLoaded = () => pic.classList.add("is-loaded");
+
+    image.addEventListener("load", markLoaded);
+    image.addEventListener("error", () => pic.classList.add("is-fallback"));
+
+    if (image.complete && image.naturalWidth > 0) markLoaded();
+  });
+
+  /* Event gallery photos: fade in when loaded */
+  $$(".event-poster-figure img, .event-pic img, .event-pic-bottom img").forEach((image) => {
+    const wrap = image.closest(".event-poster-figure, .event-pic, .event-pic-bottom");
+    if (!wrap) return;
+
+    const markLoaded = () => wrap.classList.add("is-loaded");
+
+    image.addEventListener("load", markLoaded);
+    image.addEventListener("error", () => wrap.classList.add("is-fallback"));
+
+    if (image.complete && image.naturalWidth > 0) markLoaded();
+  });
+
   /* Copy email with toast feedback */
   const copyButton = $("#copyEmail");
   const toast = $("#toast");

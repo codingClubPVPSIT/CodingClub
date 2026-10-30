@@ -1577,12 +1577,20 @@ body.cursor-visible .gravity-cursor {
 .event-title-row {
   display: flex;
   align-items: flex-end;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 14px 18px;
 }
 
 .event-title-row h2 {
   min-width: 0;
+}
+
+.event-title-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .event-link {
@@ -1761,43 +1769,40 @@ body.cursor-visible .gravity-cursor {
   gap: 20px;
 }
 
-.quote-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 220px;
-  padding: 30px;
+.event-poster-card {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 260px;
+  padding: 20px;
   background:
     radial-gradient(circle at 80% 20%, rgba(91, 124, 255, 0.22), transparent 55%),
     linear-gradient(155deg, rgba(62, 233, 255, 0.09), rgba(8, 12, 22, 0.7));
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
 }
 
-.quote-mark {
-  position: absolute;
-  top: 12px;
-  right: 22px;
-  color: rgba(62, 233, 255, 0.16);
-  font-size: 6rem;
-  font-weight: 800;
-  line-height: 1;
+.event-poster-figure {
+  margin: 0;
+  width: 100%;
+  max-width: 210px;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(174, 190, 224, 0.18);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
 }
 
-.quote-card p {
-  color: #e7f8ff;
-  font-size: clamp(1.25rem, 2vw, 1.65rem);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.035em;
+.event-poster-figure img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.7s ease;
 }
 
-.quote-credit {
-  margin-top: 14px;
-  color: #7285a5;
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
+.event-poster-figure.is-loaded img { opacity: 1; }
 
 .event-note {
   padding: 26px 28px;
@@ -1831,6 +1836,45 @@ body.cursor-visible .gravity-cursor {
   color: #bfcde3;
   font-size: 0.72rem;
   font-weight: 500;
+}
+
+/* Event pics inside CodeVerse card */
+
+.event-pics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.event-pics-grid .event-pic {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid rgba(174, 190, 224, 0.18);
+  background: #070b13;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s var(--ease), border-color 0.3s ease, box-shadow 0.35s var(--ease);
+}
+
+.event-pics-grid .event-pic:hover {
+  transform: translateY(-4px);
+  border-color: rgba(62, 233, 255, 0.45);
+  box-shadow: 0 22px 42px rgba(0, 0, 0, 0.45);
+}
+
+.event-pics-grid .event-pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: transform 0.5s ease;
+}
+
+.event-pics-grid .event-pic:hover img {
+  transform: scale(1.04);
 }
 
 /* ---------- Winners ---------- */
@@ -1971,41 +2015,66 @@ body.cursor-visible .gravity-cursor {
 }
 
 .consolation-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 16px;
   margin-top: 16px;
 }
 
-.consolation {
-  padding: 24px 26px;
+.consolation-grid .winner-card {
+  flex: 0 1 calc((100% - 32px) / 3);
+  min-width: 280px;
 }
 
-.consolation-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  color: #8fa0ba;
-  font-family: var(--font-mono);
-  font-size: 0.59rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+.consolation-card {
+  --accent: var(--cyan);
 }
 
-.prize-small {
-  color: #aebbd0;
-  font-size: 0.68rem;
+.consolation-badge {
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
-.consolation .winner-members {
-  margin-top: 14px;
+/* ---------- Winner pictures ---------- */
+
+.winner-pic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  margin: 22px 0 0;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
+  background: #070b13;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
+
+.winner-pic img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.winner-pic.is-loaded img {
+  opacity: 1;
+}
+
+.winner-card:hover .winner-pic img {
+  transform: scale(1.03);
+}
+
+.winner-card.first .winner-pic { aspect-ratio: 3 / 4; }
+.winner-card.second .winner-pic { aspect-ratio: 4 / 5; }
+.winner-card.third .winner-pic { aspect-ratio: 4 / 5; }
+.winner-card.consolation-card .winner-pic { aspect-ratio: 4 / 5; }
 
 /* ---------- Recognition ---------- */
 
 .recognition-section {
-  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.012) 48%, transparent);
 }
 
 .recognition-grid {
@@ -2544,12 +2613,13 @@ body.cursor-visible .gravity-cursor {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .quote-card {
-    min-height: 100%;
+  .podium,
+  .consolation-grid {
+    grid-template-columns: 1fr;
   }
 
-  .podium {
-    grid-template-columns: 1fr;
+  .consolation-grid .winner-card {
+    flex: 1 1 100%;
   }
 
   .contact-panel {
@@ -2652,6 +2722,10 @@ body.cursor-visible .gravity-cursor {
 
   .faculty-note {
     display: none;
+  }
+
+  .event-pics-grid {
+    gap: 14px;
   }
 }
 
@@ -2873,6 +2947,11 @@ body.cursor-visible .gravity-cursor {
     flex-direction: column;
     gap: 3px;
   }
+
+  .event-pics-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 }
 
 @media (max-width: 430px) {
@@ -2939,6 +3018,14 @@ body.cursor-visible .gravity-cursor {
   .winner-card,
   .winner-card.first {
     padding: 26px 22px;
+  }
+
+  .winner-pic {
+    margin-top: 16px;
+  }
+
+  .winner-pic-small {
+    margin-top: 10px;
   }
 
   .contact-terminal .window-title {
